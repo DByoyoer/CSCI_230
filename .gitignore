@@ -65,11 +65,7 @@ acs-*.bib
 
 # changes
 *.soc
-Labs/latex_template_stuff/_minted-lab_template/68B329DA9893E34099C7D8AD5CB9C9402C64C28AAC3C55169F001F04B171872D.pygtex
-Labs/latex_template_stuff/_minted-lab_template/BCC0DBE15B780BC21C6EDBC246F18F407F56560FCD2D89C75F86EA7D1D3C11E2.pygtex
-Labs/latex_template_stuff/_minted-lab_template/C93C90526586B0BDDF281440FE0315442C64C28AAC3C55169F001F04B171872D.pygtex
-Labs/latex_template_stuff/_minted-lab_template/C93C90526586B0BDDF281440FE0315447F56560FCD2D89C75F86EA7D1D3C11E2.pygtex
-Labs/latex_template_stuff/_minted-lab_template/default-pyg-prefix.pygstyle
-Labs/latex_template_stuff/_minted-lab_template/default.pygstyle
-Labs/latex_template_stuff/_minted-lab_template/FF415283F05ABB3E0EA0FF652778767E2C64C28AAC3C55169F001F04B171872D.pygtex
-Labs/Lab_2_Hash_code_collisions/bin/main
+
+
+**/bin/
+**/minted_cache/
