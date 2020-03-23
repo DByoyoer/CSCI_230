@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+        \PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}LinkedBinaryTree.hpp\PYGZdq{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{printStringTree}\PYG{p}{(}\PYG{n}{LinkedBinaryTree}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZam{}}\PYG{n}{tree}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{traversaType} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{);}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{LinkedBinaryTree}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{\PYGZgt{}} \PYG{n}{testTree}\PYG{p}{;}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{addRoot}\PYG{p}{();}
+    \PYG{n}{LinkedBinaryTree}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{\PYGZgt{}::}\PYG{n}{Position} \PYG{n}{curPos} \PYG{o}{=} \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{getRoot}\PYG{p}{();}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{expandExternal}\PYG{p}{(}\PYG{n}{curPos}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}A\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{curPos} \PYG{o}{=} \PYG{n}{curPos}\PYG{p}{.}\PYG{n}{left}\PYG{p}{();}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{expandExternal}\PYG{p}{(}\PYG{n}{curPos}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}B\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{curPos} \PYG{o}{=} \PYG{n}{curPos}\PYG{p}{.}\PYG{n}{left}\PYG{p}{();}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{expandExternal}\PYG{p}{(}\PYG{n}{curPos}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}D\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{curPos} \PYG{o}{=} \PYG{n}{curPos}\PYG{p}{.}\PYG{n}{parent}\PYG{p}{().}\PYG{n}{right}\PYG{p}{();}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{expandExternal}\PYG{p}{(}\PYG{n}{curPos}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}E\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{expandExternal}\PYG{p}{(}\PYG{n}{curPos}\PYG{p}{.}\PYG{n}{left}\PYG{p}{(),} \PYG{l+s}{\PYGZdq{}G\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{curPos} \PYG{o}{=} \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{getRoot}\PYG{p}{().}\PYG{n}{right}\PYG{p}{();}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{expandExternal}\PYG{p}{(}\PYG{n}{curPos}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}C\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{testTree}\PYG{p}{.}\PYG{n}{expandExternal}\PYG{p}{(}\PYG{n}{curPos}\PYG{p}{.}\PYG{n}{right}\PYG{p}{(),} \PYG{l+s}{\PYGZdq{}F\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}In\PYGZhy{}order traversal: \PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{printStringTree}\PYG{p}{(}\PYG{n}{testTree}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{Pre\PYGZhy{}order traversal: \PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{printStringTree}\PYG{p}{(}\PYG{n}{testTree}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{Post\PYGZhy{}order traversal: \PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{printStringTree}\PYG{p}{(}\PYG{n}{testTree}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{);}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{Level\PYGZhy{}order traversal: \PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{printStringTree}\PYG{p}{(}\PYG{n}{testTree}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{printStringTree}\PYG{p}{(}\PYG{n}{LinkedBinaryTree}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZam{}}\PYG{n}{tree}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{traversalType}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{list}\PYG{o}{\PYGZlt{}}\PYG{n}{LinkedBinaryTree}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{\PYGZgt{}::}\PYG{n}{Position}\PYG{o}{\PYGZgt{}} \PYG{n}{pl} \PYG{o}{=} \PYG{n}{tree}\PYG{p}{.}\PYG{n}{positions}\PYG{p}{(}\PYG{n}{traversalType}\PYG{p}{);}
+
+    \PYG{k}{while} \PYG{p}{(}\PYG{o}{!}\PYG{n}{pl}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())}
+    \PYG{p}{\PYGZob{}}
+
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{o}{*}\PYG{n}{pl}\PYG{p}{.}\PYG{n}{front}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} \PYGZdq{}}\PYG{p}{;}
+
+        \PYG{n}{pl}\PYG{p}{.}\PYG{n}{pop\PYGZus{}front}\PYG{p}{();}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

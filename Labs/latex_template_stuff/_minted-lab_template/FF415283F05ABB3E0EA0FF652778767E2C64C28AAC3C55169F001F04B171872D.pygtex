@@ -1,0 +1,152 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}AVLTree.hpp\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}fstream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}sstream\PYGZgt{}}
+
+\PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{AVLTree}\PYG{p}{()} \PYG{o}{:} \PYG{n}{SearchTree}\PYG{p}{()} \PYG{p}{\PYGZob{}\PYGZcb{}}
+
+\PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{AVLTree}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{filepath}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{ifstream} \PYG{n}{infile}\PYG{p}{(}\PYG{n}{filepath}\PYG{p}{);}
+    \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{infile}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Probs\PYGZdq{}}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{line}\PYG{p}{;}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{strTemp}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{code}\PYG{p}{,} \PYG{n}{pop}\PYG{p}{;}
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{infile}\PYG{p}{,} \PYG{n}{line}\PYG{p}{))}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{stringstream} \PYG{n}{ss}\PYG{p}{(}\PYG{n}{line}\PYG{p}{);}
+        \PYG{n}{getline}\PYG{p}{(}\PYG{n}{ss}\PYG{p}{,} \PYG{n}{strTemp}\PYG{p}{,} \PYG{l+s+sc}{\PYGZsq{},\PYGZsq{}}\PYG{p}{);}
+        \PYG{n}{code} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{stoi}\PYG{p}{(}\PYG{n}{strTemp}\PYG{p}{);}
+        \PYG{n}{getline}\PYG{p}{(}\PYG{n}{ss}\PYG{p}{,} \PYG{n}{strTemp}\PYG{p}{,} \PYG{l+s+sc}{\PYGZsq{},\PYGZsq{}}\PYG{p}{);}
+        \PYG{n}{pop} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{stoi}\PYG{p}{(}\PYG{n}{strTemp}\PYG{p}{);}
+        \PYG{n}{getline}\PYG{p}{(}\PYG{n}{ss}\PYG{p}{,} \PYG{n}{strTemp}\PYG{p}{);}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{county} \PYG{o}{=} \PYG{n}{strTemp}\PYG{p}{.}\PYG{n}{substr}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{strTemp}\PYG{p}{.}\PYG{n}{size}\PYG{p}{()} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{3}\PYG{p}{);} \PYG{c+c1}{//Removing Quotes}
+        \PYG{n}{insert}\PYG{p}{(}\PYG{n}{code}\PYG{p}{,} \PYG{n}{pop}\PYG{p}{,} \PYG{n}{county}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{code}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{TPos} \PYG{n}{p} \PYG{o}{=} \PYG{n}{finder}\PYG{p}{(}\PYG{n}{code}\PYG{p}{,} \PYG{n}{root}\PYG{p}{());}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{isInternal}\PYG{p}{())}
+    \PYG{p}{\PYGZob{}}
+
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}County/State: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{o}{*}\PYG{n}{p}\PYG{p}{).}\PYG{n}{value}\PYG{p}{().}\PYG{n}{name} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{Population: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{o}{*}\PYG{n}{p}\PYG{p}{).}\PYG{n}{value}\PYG{p}{().}\PYG{n}{population} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Could not find key}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}AVL: Examined \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{nodesExamined} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} nodes}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{height}\PYG{p}{(}\PYG{k}{const} \PYG{n}{TPos} \PYG{o}{\PYGZam{}}\PYG{n}{v}\PYG{p}{)} \PYG{k}{const}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{v} \PYG{o}{==} \PYG{n}{root}\PYG{p}{().}\PYG{n}{parent}\PYG{p}{())}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{p}{(}\PYG{o}{*}\PYG{n}{root}\PYG{p}{()).}\PYG{n}{getHeight}\PYG{p}{();}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{isExternal}\PYG{p}{()} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{p}{(}\PYG{o}{*}\PYG{n}{v}\PYG{p}{).}\PYG{n}{getHeight}\PYG{p}{());}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{setHeight}\PYG{p}{(}\PYG{n}{TPos} \PYG{n}{v}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{isExternal}\PYG{p}{())}
+    \PYG{p}{\PYGZob{}}
+        \PYG{p}{(}\PYG{o}{*}\PYG{n}{v}\PYG{p}{).}\PYG{n}{setHeight}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+        \PYG{k}{return}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k+kt}{int} \PYG{n}{leftHeight} \PYG{o}{=} \PYG{n}{height}\PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{left}\PYG{p}{());}
+    \PYG{k+kt}{int} \PYG{n}{rightHeight} \PYG{o}{=} \PYG{n}{height}\PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{right}\PYG{p}{());}
+    \PYG{p}{(}\PYG{o}{*}\PYG{n}{v}\PYG{p}{).}\PYG{n}{setHeight}\PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{n}{std}\PYG{o}{::}\PYG{n}{max}\PYG{p}{(}\PYG{n}{leftHeight}\PYG{p}{,} \PYG{n}{rightHeight}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{bool} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{isBalanced}\PYG{p}{(}\PYG{k}{const} \PYG{n}{TPos} \PYG{o}{\PYGZam{}}\PYG{n}{v}\PYG{p}{)} \PYG{k}{const}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{bal} \PYG{o}{=} \PYG{n}{height}\PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{left}\PYG{p}{())} \PYG{o}{\PYGZhy{}} \PYG{n}{height}\PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{right}\PYG{p}{());}
+    \PYG{k}{return} \PYG{p}{((}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}=} \PYG{n}{bal}\PYG{p}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{bal} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{1}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{TPos} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{tallGrandchild}\PYG{p}{(}\PYG{k}{const} \PYG{n}{TPos} \PYG{o}{\PYGZam{}}\PYG{n}{z}\PYG{p}{)} \PYG{k}{const}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{TPos} \PYG{n}{zLeft} \PYG{o}{=} \PYG{n}{z}\PYG{p}{.}\PYG{n}{left}\PYG{p}{();}
+    \PYG{n}{TPos} \PYG{n}{zRight} \PYG{o}{=} \PYG{n}{z}\PYG{p}{.}\PYG{n}{right}\PYG{p}{();}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{height}\PYG{p}{(}\PYG{n}{zLeft}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{n}{height}\PYG{p}{(}\PYG{n}{zRight}\PYG{p}{))}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{height}\PYG{p}{(}\PYG{n}{zLeft}\PYG{p}{.}\PYG{n}{left}\PYG{p}{())} \PYG{o}{\PYGZgt{}=} \PYG{n}{height}\PYG{p}{(}\PYG{n}{zLeft}\PYG{p}{.}\PYG{n}{right}\PYG{p}{()))}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{n}{zLeft}\PYG{p}{.}\PYG{n}{left}\PYG{p}{();}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{n}{zLeft}\PYG{p}{.}\PYG{n}{right}\PYG{p}{();}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{height}\PYG{p}{(}\PYG{n}{zRight}\PYG{p}{.}\PYG{n}{right}\PYG{p}{())} \PYG{o}{\PYGZgt{}=} \PYG{n}{height}\PYG{p}{(}\PYG{n}{zRight}\PYG{p}{.}\PYG{n}{left}\PYG{p}{()))}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{n}{zRight}\PYG{p}{.}\PYG{n}{right}\PYG{p}{();}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{return} \PYG{n}{zRight}\PYG{p}{.}\PYG{n}{left}\PYG{p}{();}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{rebalance}\PYG{p}{(}\PYG{k}{const} \PYG{n}{TPos} \PYG{o}{\PYGZam{}}\PYG{n}{v}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{TPos} \PYG{n}{z} \PYG{o}{=} \PYG{n}{v}\PYG{p}{;}
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{z} \PYG{o}{!=} \PYG{n}{SearchTree}\PYG{o}{::}\PYG{n}{root}\PYG{p}{())}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{z} \PYG{o}{=} \PYG{n}{z}\PYG{p}{.}\PYG{n}{parent}\PYG{p}{();}
+
+        \PYG{n}{setHeight}\PYG{p}{(}\PYG{n}{z}\PYG{p}{);}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{isBalanced}\PYG{p}{(}\PYG{n}{z}\PYG{p}{))}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{TPos} \PYG{n}{x} \PYG{o}{=} \PYG{n}{tallGrandchild}\PYG{p}{(}\PYG{n}{z}\PYG{p}{);}
+            \PYG{n}{z} \PYG{o}{=} \PYG{n}{restructure}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+            \PYG{n}{setHeight}\PYG{p}{(}\PYG{n}{z}\PYG{p}{.}\PYG{n}{right}\PYG{p}{());}
+            \PYG{n}{setHeight}\PYG{p}{(}\PYG{n}{z}\PYG{p}{.}\PYG{n}{left}\PYG{p}{());}
+            \PYG{n}{setHeight}\PYG{p}{(}\PYG{n}{z}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{Iterator} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{insert}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{key}\PYG{p}{,} \PYG{k}{const} \PYG{n}{County} \PYG{o}{\PYGZam{}}\PYG{n}{value}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{TPos} \PYG{n}{v} \PYG{o}{=} \PYG{n}{inserter}\PYG{p}{(}\PYG{n}{key}\PYG{p}{,} \PYG{n}{value}\PYG{p}{);}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}AVL: Examined \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{nodesExamined} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} nodes}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{setHeight}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+    \PYG{n}{rebalance}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+    \PYG{k}{return} \PYG{n+nf}{Iterator}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{insert}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{code}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{pop}\PYG{p}{,} \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{name}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{County} \PYG{n}{value}\PYG{p}{(}\PYG{n}{pop}\PYG{p}{,} \PYG{n}{name}\PYG{p}{);}
+    \PYG{n}{TPos} \PYG{n}{v} \PYG{o}{=} \PYG{n}{inserter}\PYG{p}{(}\PYG{n}{code}\PYG{p}{,} \PYG{n}{value}\PYG{p}{);}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}AVL: Examined \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{nodesExamined} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} nodes}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{setHeight}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+    \PYG{n}{rebalance}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{AVLTree}\PYG{o}{::}\PYG{n}{erase}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{code}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{TPos} \PYG{n}{v} \PYG{o}{=} \PYG{n}{finder}\PYG{p}{(}\PYG{n}{code}\PYG{p}{,} \PYG{n}{SearchTree}\PYG{o}{::}\PYG{n}{root}\PYG{p}{());}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}AVL: Examined \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{nodesExamined} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} nodes}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{isExternal}\PYG{p}{())}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{throw} \PYG{n}{NonexistentElement}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Erase of nonexistent\PYGZdq{}}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+
+        \PYG{n}{TPos} \PYG{n}{w} \PYG{o}{=} \PYG{n}{eraser}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+    \PYG{n}{rebalance}\PYG{p}{(}\PYG{n}{w}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
