@@ -59,8 +59,12 @@ protected:
     }
 
 public:
-    OpenAddressMap() : n(0){};
-    OpenAddressMap(const std::vector<Entry<K, V>> &eList, float loadFactor);
+    OpenAddressMap(int size = 11) : n(0), table(size){};
+
+    //Can't be a constructor since it calls a virutal function
+    //Also outputs average probes and max probes for insertion from list
+    // to console for project
+    virtual void createFromEntryList(const std::vector<Entry<K, V>> &eList, float loadFactor);
     Iterator find(const K &k, bool diagnositc = false);
     Iterator put(const Entry<K, V> &e, bool diagnostic = false);
     Iterator put(const K &k, const V &v, bool diagnostic = false);
@@ -126,10 +130,8 @@ typename OpenAddressMap<K, V, H>::Iterator &OpenAddressMap<K, V, H>::Iterator::o
 }
 
 template <typename K, typename V, typename H>
-OpenAddressMap<K, V, H>::OpenAddressMap(const std::vector<Entry<K, V>> &eList, float loadFactor)
-    : n(0)
+void OpenAddressMap<K, V, H>::createFromEntryList(const std::vector<Entry<K, V>> &eList, float loadFactor)
 {
-
     int capacity = eList.size() / loadFactor;
     //finding size for table
     if (capacity % 2 == 0)
@@ -291,7 +293,7 @@ template <typename K, typename V, typename H>
 class DoubleHashMap : public OpenAddressMap<K, V, H>
 {
 public:
-    DoubleHashMap<K, V, H>(const std::vector<Entry<K, V>> &eList, float loadFactor)
+    void createFromEntryList(const std::vector<Entry<K, V>> &eList, float loadFactor) override
     {
         int capacity = eList.size() / loadFactor;
         //finding size for table

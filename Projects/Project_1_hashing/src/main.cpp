@@ -19,50 +19,10 @@ struct RecordData
 };
 
 //returns number of the choice
-int menu()
-{
-    std::cout << "\n1. Search for a record\n"
-              << "2. Insert a record\n"
-              << "3. Delete a record\n"
-              << "4. List all records\n"
-              << "5. Exit\n\n"
-              << "Please Select an option: ";
-    int choice;
-    std::cin >> choice;
-    std::cout << choice << std::endl; //!Alert delete later
-    if (std::cin.fail())
-    {
-        std::cin.clear();
-        std::cin.ignore();
-        return 0;
-    }
-    return choice;
-}
+int menu();
 
-std::vector<Entry<int, RecordData>> processFile(std::string filePath)
-{
-    std::vector<Entry<int, RecordData>> entryList;
-    Entry<int, RecordData> inputEntry;
-    std::ifstream inputFile;
-    inputFile.open(filePath);
-    if (inputFile.fail())
-    {
-        return entryList;
-    }
-    int size;
-    inputFile >> size;
-    std::string stateCode, population, name;
-    for (int i = 0; i < size; i++)
-    {
-        std::getline(inputFile, stateCode, ',');
-        std::getline(inputFile, population, ',');
-        std::getline(inputFile, name);
-        inputEntry.setKey(std::stoi(stateCode));
-        inputEntry.setValue(RecordData(std::stoi(population), name));
-        entryList.push_back(inputEntry);
-    }
-    return entryList;
-}
+//Create vector of entries from a properly formatted input file
+std::vector<Entry<int, RecordData>> processFile(std::string filePath);
 
 int main()
 {
@@ -91,10 +51,10 @@ int main()
     std::cout << "\nPlease enter a load factor between 0-1: ";
     std::cin >> loadFactor;
     std::cout << loadFactor << std::endl; //!Alert: Deletle later
-    ChainHashMap<int, RecordData, HashCode> table(entryList, loadFactor);
     int operation = 0;
     if (choice == 1)
     {
+        ChainHashMap<int, RecordData, HashCode> table(entryList, loadFactor);
         while (operation != 5)
         {
             operation = menu();
@@ -149,12 +109,13 @@ int main()
         OpenAddressMap<int, RecordData, HashCode> *table2;
         if (choice == 2)
         {
-            table2 = new OpenAddressMap<int, RecordData, HashCode>(entryList, loadFactor);
+            table2 = new OpenAddressMap<int, RecordData, HashCode>;
         }
         else
         {
-            table2 = new DoubleHashMap<int, RecordData, HashCode>(entryList, loadFactor);
+            table2 = new DoubleHashMap<int, RecordData, HashCode>;
         }
+        table2->createFromEntryList(entryList, loadFactor);
         while (operation != 5)
         {
             operation = menu();
@@ -203,4 +164,49 @@ int main()
             }
         }
     }
+}
+
+int menu()
+{
+    std::cout << "\n1. Search for a record\n"
+              << "2. Insert a record\n"
+              << "3. Delete a record\n"
+              << "4. List all records\n"
+              << "5. Exit\n\n"
+              << "Please Select an option: ";
+    int choice;
+    std::cin >> choice;
+    std::cout << choice << std::endl; //!Alert delete later
+    if (std::cin.fail())
+    {
+        std::cin.clear();
+        std::cin.ignore();
+        return 0;
+    }
+    return choice;
+}
+
+std::vector<Entry<int, RecordData>> processFile(std::string filePath)
+{
+    std::vector<Entry<int, RecordData>> entryList;
+    Entry<int, RecordData> inputEntry;
+    std::ifstream inputFile;
+    inputFile.open(filePath);
+    if (inputFile.fail())
+    {
+        return entryList;
+    }
+    int size;
+    inputFile >> size;
+    std::string stateCode, population, name;
+    for (int i = 0; i < size; i++)
+    {
+        std::getline(inputFile, stateCode, ',');
+        std::getline(inputFile, population, ',');
+        std::getline(inputFile, name);
+        inputEntry.setKey(std::stoi(stateCode));
+        inputEntry.setValue(RecordData(std::stoi(population), name));
+        entryList.push_back(inputEntry);
+    }
+    return entryList;
 }
