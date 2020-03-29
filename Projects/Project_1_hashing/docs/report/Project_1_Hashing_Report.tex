@@ -1,0 +1,34 @@
+\documentclass[titlepage]{article}
+\usepackage[draft=true, cachedir=minted_cache]{minted}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+\usepackage[margin=.5in]{geometry} %used to set the margins
+\setcounter{secnumdepth}{0} %used to get rid of section numbers
+\title{
+    Project 1 - Hashing \\
+    CSCI 230 T Th 11:10 am \\
+    Compiler: g++ \\
+    OS: Linux
+    }
+\author{Michael Morikawa}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Source Code}
+\subsection{main.cpp}
+\inputminted{c++}{../../src/main.cpp}
+\subsection{HashCode.hpp}
+\inputminted{c++}{../../include/HashCode.hpp}
+\subsection{Entry.hpp}
+\inputminted{c++}{../../include/Entry.hpp}
+\subsection{ChainHashMap.hpp}
+\inputminted{c++}{../../include/ChainHashMap.hpp}
+\subsection{OpenAddressMap.hpp}
+\inputminted{c++}{../../include/OpenAddressMap.hpp}
+
+\section{Output}
+\end{document}

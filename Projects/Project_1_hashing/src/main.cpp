@@ -1,5 +1,5 @@
 #include "HashCode.hpp"
-#include "HashMap.hpp"
+#include "ChainHashMap.hpp"
 #include "OpenAddressMap.hpp"
 #include <fstream>
 #include <iostream>
