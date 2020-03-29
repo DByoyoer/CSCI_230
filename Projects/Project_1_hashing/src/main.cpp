@@ -147,7 +147,6 @@ int main()
     else
     {
         OpenAddressMap<int, RecordData, HashCode> *table2;
-        std::cout << "test\n";
         if (choice == 2)
         {
             table2 = new OpenAddressMap<int, RecordData, HashCode>(entryList, loadFactor);

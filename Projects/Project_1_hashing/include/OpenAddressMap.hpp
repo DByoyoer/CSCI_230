@@ -36,7 +36,7 @@ protected:
     //different function used to find where to insert
     //will return first open spot
     virtual Iterator insertionFinder(const K &k);
-    void eraser(const Iterator &p);
+    virtual void eraser(const Iterator &p);
 
     static bool isPrime(int n)
     {
@@ -59,16 +59,20 @@ protected:
     }
 
 public:
-    OpenAddressMap(){};
+    OpenAddressMap() : n(0){};
     OpenAddressMap(const std::vector<Entry<K, V>> &eList, float loadFactor);
-    virtual Iterator find(const K &k, bool diagnositc = false);
-    virtual Iterator put(const Entry<K, V> &e, bool diagnostic = false);
-    virtual Iterator put(const K &k, const V &v, bool diagnostic = false);
-    virtual void erase(const Iterator &p, bool diagnostic = false);
-    virtual void erase(const K &k, bool diagnostic = false);
+    Iterator find(const K &k, bool diagnositc = false);
+    Iterator put(const Entry<K, V> &e, bool diagnostic = false);
+    Iterator put(const K &k, const V &v, bool diagnostic = false);
+    void erase(const Iterator &p, bool diagnostic = false);
+    void erase(const K &k, bool diagnostic = false);
     bool empty() const
     {
         return n == 0;
+    }
+    int size()
+    {
+        return n;
     }
     Iterator end();
     Iterator begin();
@@ -123,6 +127,7 @@ typename OpenAddressMap<K, V, H>::Iterator &OpenAddressMap<K, V, H>::Iterator::o
 
 template <typename K, typename V, typename H>
 OpenAddressMap<K, V, H>::OpenAddressMap(const std::vector<Entry<K, V>> &eList, float loadFactor)
+    : n(0)
 {
 
     int capacity = eList.size() / loadFactor;
@@ -370,5 +375,5 @@ protected:
     */
 
 private:
-    int collisionPrime = 23;
+    int collisionPrime;
 };
