@@ -11,7 +11,7 @@ struct RecordData
     int population;
     std::string name;
     RecordData(int n = 0, std::string s = "") : population(n), name(s) {}
-    friend std::ostream& operator<<(std::ostream& os, const RecordData& data)
+    friend std::ostream &operator<<(std::ostream &os, const RecordData &data)
     {
         os << data.population << ' ' << data.name;
         return os;
@@ -29,6 +29,7 @@ int menu()
               << "Please Select an option: ";
     int choice;
     std::cin >> choice;
+    std::cout << choice << std::endl; //!Alert delete later
     if (std::cin.fail())
     {
         std::cin.clear();
@@ -67,8 +68,9 @@ int main()
 {
     std::string filepath;
     std::vector<Entry<int, RecordData>> entryList;
-    std::cout << "Please enter the file path for the input file you wish to use.\n";
+    std::cout << "Please enter the file path for the input file you wish to use:\n";
     std::cin >> filepath;
+    std::cout << filepath << std::endl; //!Alert: Delete later
     entryList = processFile(filepath);
     if (entryList.empty())
     {
@@ -80,13 +82,15 @@ int main()
     std::string name;
     int choice;
     double loadFactor;
-    std::cout << "1. Chain Hashing\n"
+    std::cout << "\n1. Chain Hashing\n"
               << "2. Linear Probe Hashing\n"
               << "3. Double Hashing\n"
               << "Please choose a hashing scheme: ";
     std::cin >> choice;
+    std::cout << choice << std::endl; //!Alert: Delete later
     std::cout << "\nPlease enter a load factor between 0-1: ";
     std::cin >> loadFactor;
+    std::cout << loadFactor << std::endl; //!Alert: Deletle later
     ChainHashMap<int, RecordData, HashCode> table(entryList, loadFactor);
     int operation = 0;
     if (choice == 1)
@@ -100,6 +104,7 @@ int main()
             {
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
+                std::cout << code << std::endl; //!ALERT: For file redirection delete later
                 auto it = table.find(code, true);
                 if (it == table.end())
                 {
@@ -107,6 +112,7 @@ int main()
                 }
                 else
                 {
+                    std::cout << "Record Found\n";
                     std::cout << (*it).value() << '\n';
                 }
             }
@@ -116,6 +122,7 @@ int main()
                 std::cout << "Please enter the state code, population and name separated by spaces:\n";
                 std::cin >> code >> population;
                 std::getline(std::cin, name);
+                std::cout << code << " " << population << " " << name << std::endl; //!Alert: Delete later
                 table.put(code, RecordData(population, name), true);
             }
             break;
@@ -123,6 +130,7 @@ int main()
             {
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
+                std::cout << code << std::endl; //!Alert: Delete later
                 table.erase(code, true);
             }
             break;
@@ -138,7 +146,8 @@ int main()
     }
     else
     {
-        OpenAddressMap<int, RecordData, HashCode>* table2;
+        OpenAddressMap<int, RecordData, HashCode> *table2;
+        std::cout << "test\n";
         if (choice == 2)
         {
             table2 = new OpenAddressMap<int, RecordData, HashCode>(entryList, loadFactor);
@@ -156,6 +165,7 @@ int main()
             {
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
+                std::cout << code << std::endl; //!Alert: Delete later
                 auto it = table2->find(code, true);
                 if (it == table2->end())
                 {
@@ -172,6 +182,7 @@ int main()
                 std::cout << "Please enter the state code, population and name separated by spaces:\n";
                 std::cin >> code >> population;
                 std::getline(std::cin, name);
+                std::cout << code << " " << population << " " << name << std::endl; //!Alert: Delete later
                 table2->put(code, RecordData(population, name), true);
             }
             break;
@@ -179,7 +190,8 @@ int main()
             {
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
-                //table2->erase(code, true);
+                std::cout << code << std::endl; //!Alert: Delete later
+                table2->erase(code, true);
             }
             break;
             case 4:
