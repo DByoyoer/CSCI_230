@@ -65,7 +65,7 @@ int main()
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
                 std::cout << code << std::endl; //!ALERT: For file redirection delete later
-                auto it = table.find(code, true);
+                auto it = table.find(code);
                 if (it == table.end())
                 {
                     std::cout << "Could not find the record\n";
@@ -83,7 +83,7 @@ int main()
                 std::cin >> code >> population;
                 std::getline(std::cin, name);
                 std::cout << code << " " << population << " " << name << std::endl; //!Alert: Delete later
-                table.put(code, RecordData(population, name), true);
+                table.put(code, RecordData(population, name));
             }
             break;
             case 3:
@@ -91,7 +91,7 @@ int main()
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
                 std::cout << code << std::endl; //!Alert: Delete later
-                table.erase(code, true);
+                table.erase(code);
             }
             break;
             case 4:
@@ -101,6 +101,10 @@ int main()
             break;
             default:
                 break;
+            }
+            if (operation != 4 && operation != 5)
+            {
+                std::cout << "Last operation took " << table.getLastProbe() << " probe(s).\n";
             }
         }
     }
@@ -126,7 +130,7 @@ int main()
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
                 std::cout << code << std::endl; //!Alert: Delete later
-                auto it = table2->find(code, true);
+                auto it = table2->find(code);
                 if (it == table2->end())
                 {
                     std::cout << "Could not find the record\n";
@@ -143,7 +147,7 @@ int main()
                 std::cin >> code >> population;
                 std::getline(std::cin, name);
                 std::cout << code << " " << population << " " << name << std::endl; //!Alert: Delete later
-                table2->put(code, RecordData(population, name), true);
+                table2->put(code, RecordData(population, name));
             }
             break;
             case 3:
@@ -151,7 +155,7 @@ int main()
                 std::cout << "Please enter the state code: ";
                 std::cin >> code;
                 std::cout << code << std::endl; //!Alert: Delete later
-                table2->erase(code, true);
+                table2->erase(code);
             }
             break;
             case 4:
@@ -161,6 +165,10 @@ int main()
             break;
             default:
                 break;
+            }
+            if (operation != 4 && operation != 5)
+            {
+                std::cout << "Last operation took " << table2->getLastProbe() << " probe(s).\n";
             }
         }
     }

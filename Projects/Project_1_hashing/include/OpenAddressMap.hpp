@@ -59,17 +59,26 @@ protected:
     }
 
 public:
-    OpenAddressMap(int size = 11) : n(0), table(size){};
+    OpenAddressMap(int size = 11) : n(0), probes(0), table(size){};
 
     //Can't be a constructor since it calls a virutal function
     //Also outputs average probes and max probes for insertion from list
     // to console for project
-    virtual void createFromEntryList(const std::vector<Entry<K, V>> &eList, float loadFactor);
-    Iterator find(const K &k, bool diagnositc = false);
-    Iterator put(const Entry<K, V> &e, bool diagnostic = false);
-    Iterator put(const K &k, const V &v, bool diagnostic = false);
-    void erase(const Iterator &p, bool diagnostic = false);
-    void erase(const K &k, bool diagnostic = false);
+    virtual void createFromEntryList(const std::vector<Entry<K, V>> &eList,
+                                     float loadFactor);
+    Iterator find(const K &k);
+    Iterator put(const Entry<K, V> &e);
+    Iterator put(const K &k, const V &v);
+    void erase(const Iterator &p);
+    void erase(const K &k);
+    Iterator end();
+    Iterator begin();
+    void printAll();
+
+    int getLastProbe()
+    {
+        return probes;
+    }
     bool empty() const
     {
         return n == 0;
@@ -78,9 +87,6 @@ public:
     {
         return n;
     }
-    Iterator end();
-    Iterator begin();
-    void printAll();
 
 public:
     class Iterator
@@ -104,19 +110,22 @@ public:
 };
 
 template <typename K, typename V, typename H>
-VisitEntry<K, V> &OpenAddressMap<K, V, H>::Iterator::operator*() const
+VisitEntry<K, V> &OpenAddressMap<K, V, H>::
+    Iterator::operator*() const
 {
     return *bktIt;
 }
 
 template <typename K, typename V, typename H>
-bool OpenAddressMap<K, V, H>::Iterator::operator==(const Iterator &p) const
+bool OpenAddressMap<K, V, H>::
+    Iterator::operator==(const Iterator &p) const
 {
     return (tableRef == p.tableRef && bktIt == p.bktIt);
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator &OpenAddressMap<K, V, H>::Iterator::operator++()
+typename OpenAddressMap<K, V, H>::Iterator &OpenAddressMap<K, V, H>::
+    Iterator::operator++()
 {
     ++bktIt;
     if (bktIt->available)
@@ -130,7 +139,8 @@ typename OpenAddressMap<K, V, H>::Iterator &OpenAddressMap<K, V, H>::Iterator::o
 }
 
 template <typename K, typename V, typename H>
-void OpenAddressMap<K, V, H>::createFromEntryList(const std::vector<Entry<K, V>> &eList, float loadFactor)
+void OpenAddressMap<K, V, H>::
+    createFromEntryList(const std::vector<Entry<K, V>> &eList, float loadFactor)
 {
     int capacity = eList.size() / loadFactor;
     //finding size for table
@@ -158,13 +168,15 @@ void OpenAddressMap<K, V, H>::createFromEntryList(const std::vector<Entry<K, V>>
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::end()
+typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::
+    end()
 {
     return Iterator(table, table.end());
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::begin()
+typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::
+    begin()
 {
     if (empty())
     {
@@ -179,7 +191,8 @@ typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::begin()
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::finder(const K &k)
+typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::
+    finder(const K &k)
 {
     probes = 1;
     int i = hash(k) % table.size();
@@ -197,7 +210,8 @@ typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::finder(const
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::insertionFinder(const K &k)
+typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::
+    insertionFinder(const K &k)
 {
     probes = 1;
     int i = hash(k) % table.size();
@@ -215,14 +229,10 @@ typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::insertionFin
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::find(const K &k, bool diagnostic)
+typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::
+    find(const K &k)
 {
     Iterator p = finder(k);
-
-    if (diagnostic)
-    {
-        std::cout << "Found/Not Found in " << probes << " probes.\n";
-    }
 
     if ((*p).empty)
     {
@@ -235,7 +245,8 @@ typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::find(const K
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::put(const K &k, const V &v, bool diagnostic)
+typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::
+    put(const K &k, const V &v)
 {
     n++;
     Iterator p = insertionFinder(k);
@@ -246,9 +257,10 @@ typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::put(const K 
 }
 
 template <typename K, typename V, typename H>
-typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::put(const Entry<K, V> &e, bool diagnostic)
+typename OpenAddressMap<K, V, H>::Iterator OpenAddressMap<K, V, H>::
+    put(const Entry<K, V> &e)
 {
-    return put(e.key(), e.value(), diagnostic);
+    return put(e.key(), e.value());
 }
 
 template <typename K, typename V, typename H>
@@ -265,13 +277,13 @@ void OpenAddressMap<K, V, H>::eraser(const Iterator &p)
 }
 
 template <typename K, typename V, typename H>
-void OpenAddressMap<K, V, H>::erase(const Iterator &p, bool diagnostic)
+void OpenAddressMap<K, V, H>::erase(const Iterator &p)
 {
     eraser(p);
 }
 
 template <typename K, typename V, typename H>
-void OpenAddressMap<K, V, H>::erase(const K &k, bool diagnostic)
+void OpenAddressMap<K, V, H>::erase(const K &k)
 {
     Iterator p = finder(k);
     eraser(p);
@@ -289,11 +301,13 @@ void OpenAddressMap<K, V, H>::printAll()
     }
 }
 
+//Implements double hashing for resolving collisions
 template <typename K, typename V, typename H>
 class DoubleHashMap : public OpenAddressMap<K, V, H>
 {
 public:
-    void createFromEntryList(const std::vector<Entry<K, V>> &eList, float loadFactor) override
+    void createFromEntryList(const std::vector<Entry<K, V>> &eList,
+                             float loadFactor) override
     {
         int capacity = eList.size() / loadFactor;
         //finding size for table
@@ -335,13 +349,15 @@ protected:
     Iterator finder(const K &k) override
     {
         this->probes = 1;
+        int counter = 1;
         int index = k % this->table.size();
         auto currentEntry = this->table[index];
         while (!currentEntry.empty && currentEntry.key() != k)
         {
             this->probes++;
-            index = (index + (collisionPrime - (k % collisionPrime))) % this->table.size();
+            index = (index + counter * (collisionPrime - (k % collisionPrime))) % this->table.size();
             currentEntry = this->table[index];
+            counter++;
         }
         return Iterator(this->table, this->table.begin() + index);
     }
@@ -349,32 +365,17 @@ protected:
     Iterator insertionFinder(const K &k) override
     {
         this->probes = 1;
+        int counter = 1;
         int index = k % this->table.size();
         auto currentEntry = this->table[index];
         while (!currentEntry.available && currentEntry.key() != k)
         {
             this->probes++;
-            index = (index + (collisionPrime - (k % collisionPrime))) % this->table.size();
+            index = (index + counter * (collisionPrime - (k % collisionPrime))) % this->table.size();
             currentEntry = this->table[index];
         }
         return Iterator(this->table, this->table.begin() + index);
     }
-    /*
-    Iterator put(const K& k, const V& v, bool diagnostic = false) override
-    {
-        this->n++;
-        Iterator p = insertionFinder(k);
-        (*p) = VisitEntry<K, V>(k, v);
-        (*p).empty = false;
-        (*p).available = false;
-        return p;
-    }
-
-    Iterator put(const Entry<K, V>& e, bool diagnostic = false) override
-    {
-        return put(e.key(), e.value(), diagnostic);
-    }
-    */
 
 private:
     int collisionPrime;
