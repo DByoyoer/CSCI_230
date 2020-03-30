@@ -323,7 +323,7 @@ public:
         int probeSum = 0;
         int probeMax = 0;
 
-        collisionPrime = (this->table.size()) - 1;
+        collisionPrime = ((this->table.size()) - 1);
         if (collisionPrime % 2 == 0)
         {
             collisionPrime--;
@@ -332,7 +332,7 @@ public:
         {
             collisionPrime -= 2;
         }
-
+        std::cout << collisionPrime << "\n";
         for (auto e : eList)
         {
             this->put(e);
@@ -350,12 +350,12 @@ protected:
     {
         this->probes = 1;
         int counter = 1;
-        int index = k % this->table.size();
+        int index = this->hash(k) % this->table.size();
         auto currentEntry = this->table[index];
         while (!currentEntry.empty && currentEntry.key() != k)
         {
             this->probes++;
-            index = (index + counter * (collisionPrime - (k % collisionPrime))) % this->table.size();
+            index = (this->hash(k) + counter * (collisionPrime - (k % collisionPrime))) % this->table.size();
             currentEntry = this->table[index];
             counter++;
         }
@@ -366,13 +366,14 @@ protected:
     {
         this->probes = 1;
         int counter = 1;
-        int index = k % this->table.size();
+        int index = this->hash(k) % this->table.size();
         auto currentEntry = this->table[index];
         while (!currentEntry.available && currentEntry.key() != k)
         {
             this->probes++;
-            index = (index + counter * (collisionPrime - (k % collisionPrime))) % this->table.size();
+            index = (this->hash(k) + counter * (collisionPrime - (k % collisionPrime))) % this->table.size();
             currentEntry = this->table[index];
+            counter++;
         }
         return Iterator(this->table, this->table.begin() + index);
     }
