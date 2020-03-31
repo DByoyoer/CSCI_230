@@ -38,6 +38,7 @@ protected:
     virtual Iterator insertionFinder(const K &k);
     virtual void eraser(const Iterator &p);
 
+    //defined here because I had issues defining outside of class
     static bool isPrime(int n)
     {
         if (n < 2 || n % 2 == 0)
@@ -74,6 +75,7 @@ public:
     Iterator end();
     Iterator begin();
     void printAll();
+    void printClusterData();
 
     int getLastProbe()
     {
@@ -301,6 +303,37 @@ void OpenAddressMap<K, V, H>::printAll()
     }
 }
 
+template <typename K, typename V, typename H>
+void OpenAddressMap<K, V, H>::printClusterData()
+{
+    int clusters = 0;
+    int size = 0;
+    int sizeSum = 0;
+    int maxSize = 0;
+    for (auto ent : table)
+    {
+
+        if (ent.available)
+        {
+            if (size > 1)
+            {
+                sizeSum += size;
+                maxSize = std::max(size, maxSize);
+                clusters++;
+            }
+            size = 0;
+        }
+        else
+        {
+            size++;
+        }
+    }
+    float avgSize = sizeSum / (float)clusters;
+    std::cout << "Clusters: " << clusters
+              << "\nAverage Size: " << avgSize
+              << "\nMax Size: " << maxSize << std::endl;
+}
+
 //Implements double hashing for resolving collisions
 template <typename K, typename V, typename H>
 class DoubleHashMap : public OpenAddressMap<K, V, H>
@@ -332,7 +365,6 @@ public:
         {
             collisionPrime -= 2;
         }
-        std::cout << collisionPrime << "\n";
         for (auto e : eList)
         {
             this->put(e);

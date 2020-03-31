@@ -31,6 +31,9 @@ public:
     void erase(const K &k);
     void erase(const Iterator &p);
     void printAll();
+    //returns pair of total clusters and average
+    //cluster size
+    void printClusterData();
     Iterator begin();
 
     //return probe count for the last operation
@@ -299,4 +302,25 @@ void ChainHashMap<K, V, H>::printAll()
         std::cout << (*p).key() << ' ' << (*p).value() << '\n';
         ++p;
     }
+}
+
+template <typename K, typename V, typename H>
+void ChainHashMap<K, V, H>::printClusterData()
+{
+    int clusters = 0;
+    int elementsInClusters = 0;
+    int maxSize = 0;
+    for (auto it : table)
+    {
+        if (it.size() > 1)
+        {
+            clusters++;
+            elementsInClusters += it.size();
+            maxSize = std::max(maxSize, (int)it.size());
+        }
+    }
+    float avgSize = (float)elementsInClusters / clusters;
+    std::cout << "Clusters: " << clusters
+              << "\nAverage Size: " << avgSize
+              << "\nMax Size: " << maxSize << std::endl;
 }

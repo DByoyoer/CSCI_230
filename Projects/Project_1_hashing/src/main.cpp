@@ -55,6 +55,7 @@ int main()
     if (choice == 1)
     {
         ChainHashMap<int, RecordData, HashCode> table(entryList, loadFactor);
+        table.printClusterData();
         while (operation != 5)
         {
             operation = menu();
@@ -120,6 +121,7 @@ int main()
             table2 = new DoubleHashMap<int, RecordData, HashCode>;
         }
         table2->createFromEntryList(entryList, loadFactor);
+        table2->printClusterData();
         while (operation != 5)
         {
             operation = menu();
