@@ -1,0 +1,75 @@
+\section{Chapter 11}
+
+\begin{itemize}
+    \item[R-11.5] In the merge-sort tree shown in Figures 11.2 through 11.4, some edges are
+          drawn as arrows. What is the meaning of a downward arrow? How about
+          an upward arrow?
+
+          \answer The downward arrow represents the divide step in the divide and conquer algorithm
+          where we split the lists into two. The upward arrow represents the merging of the separated
+          lists.
+
+    \item[R-11.8]  Suppose we are given two n-element sorted sequences A and B that should
+          not be viewed as sets (that is, A and B may contain duplicate entries).
+          Describe an $O(n)$-time method for computing a sequence representing the
+          set $A \cup B$ (with no duplicates).
+
+          \answer Have two variables i and j keeping track of the indices of A and B respectively.
+          Have i and j initialize to zero. Compare A[i] and B[j] and output the smaller value to
+          a new sequence and increment the proper variable. There will also be another variable
+          keeping track of the end of the new sequence. Before adding to the sequence we will check
+          to see if the element we want to add is the same as the last one if so ignore it and don't
+          add it to the sequence.
+
+    \item[R-11.10] Suppose we modify the deterministic version of the quick-sort algorithm
+          so that, instead of selecting the last element in an n-element sequence as
+          the pivot, we choose the element at index $\lfloor n/2 \rfloor$. What is the running time
+          of this version of quick-sort on a sequence that is already sorted?
+
+          \answer Since the sequence is already sorted by choosing the pivot to be the middle of the sequence
+          guarantees that the 2 subsequences will be the same size +/- 1. From the book it states that when
+          the 2 subsequences have roughly the same size then the runtime will $O(n\log n)$.
+
+    \item[R-11.11] Consider a modification of the deterministic version of the quick-sort al-
+          gorithm where we choose the element at index  $\lfloor n/2 \rfloor$ as our pivot. De-
+          scribe the kind of sequence that would cause this version of quick-sort to
+          run in $\Omega(n^2)$ time.
+
+          \answer The sequene will start with the second smallest element, followed by the fourth smallest
+          element and so on until the middle where the largest element would be. After the largest element it
+          will be the 3rd largest element, the 5th largest element and so on until the smallest element. This
+          makes it so that each time every element will be smaller than the pivot.
+
+    \item[R-11.18] Is the merge-sort algorithm in Section 11.1 stable? Why or why not?
+    
+    \answer It is stable because it resolves the left subtree first so the first element will stay to the left of the 
+    second element.
+
+    \item[R-11.21] Is the bucket-sort algorithm in-place? Why or why not?
+
+    \answer No it is not in-place since you have to create the buckets to put the entries into and 
+    you empty the initial sequence into the buckets then back into the original sequence.
+
+     \item[C-11.5] Describe and analyze an efficient function for removing all duplicates
+from a collection A of n elements.
+
+\answer First sort the collection using an appropriate sorting algorithm. Then go through the collection 
+element by element and check if the element is equal to the element before it. If so remove it. This
+will run in $O(n\log n)$ for the sorting and then the removal of duplicates should be $O(n)$. So 
+the algorithm is $O(n\log n + n)$ which is $O(n\log n)$.
+
+\item[C-11.23] Let A and B be two sequences of n integers each. Given an integer m,
+describe an $O(n \log n)$-time algorithm for determining if there is an integer
+a in A and an integer b in B such that m = a + b.
+
+\answer First sort the two sequences using a $O(n\log n)$ algorithm. Then start at the 
+first index of A, i, and the last index of B, j. Then compare A[i]+B[j] and m. If the sum 
+is less than the value then increase i by one, if the sum is larger decrease j by one, and if 
+the sum is equal to m output true. This will run in $O(n\log n + 2n)$ which is $O(n\log n)$ 
+
+
+
+
+
+
+\end{itemize}
