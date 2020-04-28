@@ -1,0 +1,65 @@
+\section{Chapter 11}
+
+\begin{itemize}
+      \item[R-11.8] Suppose we are given two n-element sorted sequences $A$ and $B$ that should
+            not be viewed as sets (that is, $A$ and $B$ may contain duplicate entries).
+            Describe an $O(n)$-time method for computing a sequence representing the
+            set $A \cup  B$ (with no duplicates). \\
+            \answer \\
+            First we will have indexes i and j starting at 0. In order to ignore duplicates within the
+            2 sequences check to see if A[i] == A[i+1] and shift until they are not equal or i+1 is out of bounds
+            and do the same for B but using j instead. Then compare A[i] and B[j] and put the smaller one into the
+            new set and increment the correct index, i for A and j for B. If they are equal take from A and increment both
+            i and j.
+
+      \item[R-11.23]  Describe, in pseudo-code, how to perform path compression on a path of
+            length h in O(h) time in a tree-based partition union/find structure. \\
+            \answer \\
+            while p is not root:\\
+            \tab prev = p\\
+            \tab p = p->parent\\
+            \tab prev->parent = root
+
+      \item[R-11.25] Describe an in-place version of the quick-select algorithm in pseudo-code.\\
+            \answer \\
+            \textbf{Algorithm: inPlaceQuickSelect(S, a, b, k):} \\
+            \tab\textbf{Input: } Array S, int a, b, k \\
+            \tab\textbf{Output: } $k^{th}$ smallest element in S\\
+            if $a \geq b$: return \\
+            if k>0 and k< b - a + 1:\\
+            \tab p = S[b] (pivot)\\
+            \tab l = a \\
+            \tab r = b - 1 \\
+            \tab while $l \leq r$:\\
+            \tab[1cm] while $l \leq r$ and $S[l] \leq p$:\\
+            \tab[1.5cm] l++\\
+            \tab[1cm]while $r\geq l$ and $S[r] \geq p$:\\
+            \tab[1.5cm]r++ \\
+            \tab[1cm] if $l < r$: \\
+            \tab[1.5cm] swap S[l] and S[r] \\
+            swap S[l] and S[b] \\
+            index = l (set index to pivot location)\\
+            if index -a == k - 1:\\
+            \tab return S[index] \\
+            (Recur on left side)\\
+            if index - a is larger than k - 1:\\
+            \tab return inPlaceQuickSelect(S, a,index -1, k)\\
+            (Recur on right side and adjust k)\\
+            return inPlaceQuickSelect(S, index + 1, r, k - index + l  - 1)
+
+      \item[C-11.3]  Given two sets A and B represented as sorted sequences, describe an efficient
+            algorithm for computing $A \oplus B$, which is the set of elements that are
+            in A or B, but not in both. \\
+            \answer \\
+            We can use the generic merge class from the book and create a class SymmetricDifferenceMerge
+            that inherits from it. In that class we overload the fromA and fromB functions to push the inPlaceQuickSelect
+            into the ouput set and for fromBoth we ignore it and do nothing. This will discard elements that are in both sets.
+
+
+
+
+
+
+
+
+\end{itemize}
