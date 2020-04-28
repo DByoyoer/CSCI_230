@@ -1,0 +1,143 @@
+\documentclass[titlepage]{article}
+\usepackage[draft=false, cachedir=minted_cache]{minted}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+\usepackage[margin=.5in]{geometry} %used to set the margins
+\setcounter{secnumdepth}{0} %used to get rid of section numbers
+\title{
+    Project 2- Sorting \\
+    CSCI 230 T Th 11:10 am \\
+    Compiler: g++ \\
+    OS: Linux
+    }
+
+\author{Michael Morikawa}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Notes}
+\subsection{Status}
+All sorting algorithms work and give expected results
+\subsection{Extra Credit}
+Completed shell sort and radix sort(int keys)
+\subsection{Design Decisions}
+Main could have possibly been cleaner if I had come up with a better way of making sure to use
+the same unsorted list for each sorting algorithm, but I wanted all output to be generated with a
+single execution.
+
+\newpage
+
+\section{Data}
+\subsection{Integer Key Results}
+\subsubsection{Size:1,000}
+\begin{tabular}{|*{4}{c|}}
+    \hline
+    Algortihm  & Key Comparisons & Data Moves & Time(microseconds) \\
+    \hline
+    Insertion  & 247,370         & 248,370    & 5498               \\
+    \hline
+    QuickSort  & 11,479          & 7,107      & 313                \\
+    \hline
+    QuickSort3 & 11,160          & 9,120      & 321                \\
+    \hline
+    Merge      & 8,686           & 19,952     & 2,761              \\
+    \hline
+    Radix      & -               & -          & 505                \\
+    \hline
+    Shell      & 8,328           & 19,242     & 484                \\
+    \hline
+\end{tabular}
+\subsubsection{Size: 100,000}
+\begin{tabular}{|*{4}{c|}}
+    \hline
+    Algortihm  & Key Comparisons & Data Moves & Time(microseconds) \\
+    \hline
+    Insertion  & -               & -          & -                  \\
+    \hline
+    QuickSort  & 2,014,363       & 1,172,469  & 47,447             \\
+    \hline
+    QuickSort3 & 1,937,431       & 1,360,674  & 50,065             \\
+    \hline
+    Merge      & 1,536,302       & 3,337,856  & 401,306            \\
+    \hline
+    Radix      & -               & -          & 65,222             \\
+    \hline
+    Shell      & 3,032,564       & 4,966,856  & 120,764            \\
+    \hline
+\end{tabular}
+\subsection{String Key Results}
+\begin{tabular}{|*{4}{c|}}
+    \hline
+    Algortihm  & Key Comparisons & Data Moves & Time(microseconds) \\
+    \hline
+    Insertion  & 244,350         & 245,355    & 7,513              \\
+    \hline
+    QuickSort  & 11,245          & 7,092      & 410                \\
+    \hline
+    QuickSort3 & 10,965          & 8,871      & 450                \\
+    \hline
+    Merge      & 8,695           & 19,952     & 2,687              \\
+    \hline
+    Radix      & -               & -          & -                  \\
+    \hline
+    Shell      & 8,063           & 18,977     & 556                \\
+    \hline
+\end{tabular}
+\subsubsection{Size: 100,000}
+\begin{tabular}{|*{4}{c|}}
+    \hline
+    Algortihm  & Key Comparisons & Data Moves & Time(microseconds) \\
+    \hline
+    Insertion  & -               & -          & -                  \\
+    \hline
+    QuickSort  & 1,978,324       & 1,173,504  & 70,310             \\
+    \hline
+    QuickSort3 & 1,919,654       & 1,365,048  & 72,456             \\
+    \hline
+    Merge      & 1,536,328       & 3,337,856  & 426,894            \\
+    \hline
+    Radix      & -               & -          & -                  \\
+    \hline
+    Shell      & 2,779,124       & 4,713,416  & 151,346            \\
+    \hline
+\end{tabular}
+\subsection{Conclusions}
+From the data above we see that for each run QuickSort did the best, followed
+by the median of 3 QuickSort. There is some variation for the next fastest depending on the
+input size with radix sort being slightly slower than shell sort for 1k entries, but it is
+twice as fast for 100k entries. It being about the same for 1k might suggest that the constant
+factor associated with it is somewhat high. The next slowest is Merge sort which surpisingly is
+slower than shell sort. This might have to do how I implemented merge sort becuase I would have expected
+merge sort to be faster than shell. Insertion sort is last as expected.
+
+While the key comparisons seem relatively the same for both string and integer, the entries with
+a string key performed slower than with an it, even with less comparisons and data moves. The reason is
+because when comparing two strings it will actually be multiple comparisons but I only keep track of the one
+that we see in code.
+
+\newpage
+
+\section{Source Code}
+\subsection{main.cpp}
+\inputminted{c++}{../../src/main.cpp}
+\subsection{Sorting.hpp}
+\inputminted{c++}{../../include/Sorting.hpp}
+\subsection{Entry.hpp}
+\inputminted{c++}{../../include/Entry.hpp}
+\subsection{Comparators.hpp}
+\inputminted{c++}{../../include/Comparators.hpp}
+
+\newpage
+
+\section{Output}
+\subsection{intResults.txt}
+\lstinputlisting{../intResults.txt}
+\hrulefill
+\subsection{stringResults.txt}
+\lstinputlisting{../stringResults.txt}
+\end{document}

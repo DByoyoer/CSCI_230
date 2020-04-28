@@ -1,4 +1,4 @@
-
+#pragma once
 //Simple Comparator classes that just use "size" for comparison
 
 template <typename T>
@@ -21,9 +21,11 @@ public:
     }
 };
 
+//Templated on an entry data type that supports the key() function
 template <typename E>
-class EntryLowToHigh
+class EntryCompare
 {
+public:
     bool operator()(const E &a, const E &b) const
     {
         return a.key() < b.key();

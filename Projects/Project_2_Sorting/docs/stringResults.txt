@@ -1,0 +1,120 @@
+STRING KEYS
+
+
+============== Insertion Sort ==============
+
+Size:1000
+Number of compares: 244350
+Number of data moves:245355
+Runtime: 7968 microseconds
+First 5 elements: 
+(103,103) (1035,1035) (1047,1047) (1055,1055) (1063,1063) 
+
+Last 5 elements: 
+(95,95) (955,955) (959,959) (987,987) (99,99) (995,995) 
+
+
+============== Quick Sort(End Pivot) ==============
+
+Size:1000
+Number of compares: 11245
+Number of data moves:7092
+Runtime: 410 microseconds
+First 5 elements: 
+(103,103) (1035,1035) (1047,1047) (1055,1055) (1063,1063) 
+
+Last 5 elements: 
+(95,95) (955,955) (959,959) (987,987) (99,99) (995,995) 
+
+
+============== Quick Sort(Median of 3) ==============
+
+Size:1000
+Number of compares: 10965
+Number of data moves:8871
+Runtime: 440 microseconds
+First 5 elements: 
+(103,103) (1035,1035) (1047,1047) (1055,1055) (1063,1063) 
+
+Last 5 elements: 
+(95,95) (955,955) (959,959) (987,987) (99,99) (995,995) 
+
+
+============== Merge Sort ==============
+
+Size:1000
+Number of compares: 8695
+Number of data moves:19952
+Runtime: 2601 microseconds
+First 5 elements: 
+(103,103) (1035,1035) (1047,1047) (1055,1055) (1063,1063) 
+
+Last 5 elements: 
+(95,95) (955,955) (959,959) (987,987) (99,99) (995,995) 
+
+
+============== Shell Sort ==============
+
+Size:1000
+Number of compares: 8063
+Number of data moves:18977
+Runtime: 556 microseconds
+First 5 elements: 
+(103,103) (1035,1035) (1047,1047) (1055,1055) (1063,1063) 
+
+Last 5 elements: 
+(95,95) (955,955) (959,959) (987,987) (99,99) (995,995) 
+
+
+============== Quick Sort(End Pivot) ==============
+
+Size:100000
+Number of compares: 1978324
+Number of data moves:1173504
+Runtime: 70310 microseconds
+First 5 elements: 
+(1,1) (10,10) (100,100) (1000,1000) (10000,10000) 
+
+Last 5 elements: 
+(99994,99994) (99995,99995) (99996,99996) (99997,99997) (99998,99998) (99999,99999) 
+
+
+============== Quick Sort(Median of 3) ==============
+
+Size:100000
+Number of compares: 1919654
+Number of data moves:1365048
+Runtime: 72456 microseconds
+First 5 elements: 
+(1,1) (10,10) (100,100) (1000,1000) (10000,10000) 
+
+Last 5 elements: 
+(99994,99994) (99995,99995) (99996,99996) (99997,99997) (99998,99998) (99999,99999) 
+
+
+============== Merge Sort ==============
+
+Size:100000
+Number of compares: 1536328
+Number of data moves:3337856
+Runtime: 426894 microseconds
+First 5 elements: 
+(1,1) (10,10) (100,100) (1000,1000) (10000,10000) 
+
+Last 5 elements: 
+(99994,99994) (99995,99995) (99996,99996) (99997,99997) (99998,99998) (99999,99999) 
+
+
+============== Shell Sort ==============
+
+Size:100000
+Number of compares: 2779124
+Number of data moves:4713416
+Runtime: 151346 microseconds
+First 5 elements: 
+(1,1) (10,10) (100,100) (1000,1000) (10000,10000) 
+
+Last 5 elements: 
+(99994,99994) (99995,99995) (99996,99996) (99997,99997) (99998,99998) (99999,99999) 
+
+
