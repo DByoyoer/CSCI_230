@@ -73,3 +73,5 @@ acs-*.bib
 **/minted_cache/
 Projects/Project_1_hashing/SourceCode.zip
 Projects/Project_2_Sorting/SourceCode.zip
+
+*.lnk

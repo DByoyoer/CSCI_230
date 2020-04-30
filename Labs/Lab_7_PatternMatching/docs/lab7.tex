@@ -5,7 +5,7 @@
 \graphicspath{ {./img/} }
 \usepackage[margin=1in]{geometry} %used to set the margins
 \setcounter{secnumdepth}{0} %used to get rid of section numbers
-\title{INSERT TITLE}
+\title{Lab 7: Pattern Matching}
 \author{Michael Morikawa}
 \date{\today}
 
@@ -14,13 +14,15 @@
 \maketitle
 \section{Lab Questions}
 \begin{enumerate}[label=\textbf{Question \arabic*}]
-    \item \\
+    \item Are there any situations where BM better than KMP? Explain.\\
           \textbf{
-         
+              Yes, if the pattern is short and doesn't have any prefix/suffix in common within its substrings.
           }
-    \item \\
+    \item  Is Brute Force Pattern Matching with BM’s looking-glass heuristic
+          always better than original Brute Force Pattern Matching? Explain.\\
           \textbf{
-            
+              It will not always be better than the original brute force algorithm. This is because it is possible for a mismatch to only occur at the
+              beginning of a pattern and thus the looking glass heuristic will take more comparisons.
           }
 
 
