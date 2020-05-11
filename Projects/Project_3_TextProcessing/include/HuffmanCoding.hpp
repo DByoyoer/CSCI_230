@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include "HuffmanNode.hpp"
 
 class HuffmanCoding
 {
@@ -9,6 +10,7 @@ public:
 
 protected:
     void buildFreqTable();
+    HuffmanNode *buildTree();
     typedef std::pair<char, int> pair;
 
 private:
