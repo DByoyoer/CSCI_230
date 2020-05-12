@@ -28,6 +28,14 @@ public:
     {
         return left == NULL && right == NULL;
     }
+    HuffmanNode *getLeft()
+    {
+        return left;
+    }
+    HuffmanNode *getRight()
+    {
+        return right;
+    }
 
 private:
     std::pair<char, int> data;

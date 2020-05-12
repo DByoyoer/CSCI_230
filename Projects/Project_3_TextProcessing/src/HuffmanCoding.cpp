@@ -3,9 +3,7 @@
 #include <queue>
 #include "HuffmanCoding.hpp"
 #include "HuffmanNode.hpp"
-//TODO: Figure out how to get newline char without assuming the last newline isn't real
 
-//!TEMP
 class Greater
 {
 public:
@@ -23,7 +21,6 @@ HuffmanCoding::HuffmanCoding(const char *inFile, const char *outFile)
 void HuffmanCoding::buildFreqTable()
 {
     std::ifstream inFile(inputFileName);
-    std::string text;
     std::string temp;
     while (std::getline(inFile, temp))
     {
@@ -50,7 +47,6 @@ void HuffmanCoding::buildFreqTable()
 HuffmanNode *HuffmanCoding::buildTree()
 {
     buildFreqTable();
-    //TODO: Change from pair to node type
     std::priority_queue<HuffmanNode *, std::vector<HuffmanNode *>, Greater> nodes;
     for (auto p : freqTable)
     {
@@ -74,7 +70,36 @@ HuffmanNode *HuffmanCoding::buildTree()
     return root;
 }
 
+void HuffmanCoding::getCodes(HuffmanNode *node, std::string prefix,
+                             std::map<char, std::string> &output)
+{
+    if (node->isExternal())
+    {
+        output[node->getChar()] = prefix;
+    }
+    else
+    {
+        getCodes(node->getLeft(), prefix + "0", output);
+        getCodes(node->getRight(), prefix + "1", output);
+    }
+}
+
 void HuffmanCoding::compress()
 {
     HuffmanNode *root = buildTree();
+    std::map<char, std::string> codes;
+    getCodes(root, "", codes);
+    std::string result;
+    std::ofstream outfile(outputFilename);
+    for (char c : text)
+    {
+        result += codes[c];
+    }
+    for (auto p : codes)
+    {
+        outfile << p.first << ' ' << p.second << '\n'; //Output the table containing the character codes
+    }
+    outfile << "\n--------\nNumber of characters: " << root->frequency()
+            << "\nNumber of bits: " << result.length() << "\nCompressed: "
+            << result;
 }
