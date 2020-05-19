@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "jamesAdjList.hpp"
+#include "AdjacencyListGraph.hpp"
 
 using namespace std;
 

@@ -9,14 +9,13 @@ using namespace std;
 // Based on Java version of Goodrich book w/o template
 // string for vertex and int for edge
 
-class Vertex		// behaves like interface in Java
+class Vertex // behaves like interface in Java
 {
 public:
 	virtual string getElement() = 0;
 };
 
-
-class Edge			// behaves like interface in Java
+class Edge // behaves like interface in Java
 {
 public:
 	virtual int getElement() = 0;
@@ -101,4 +100,3 @@ public:
 
 	virtual void print() = 0;
 };
-

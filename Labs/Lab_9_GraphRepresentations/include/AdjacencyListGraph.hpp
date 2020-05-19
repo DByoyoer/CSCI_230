@@ -11,6 +11,7 @@ using namespace std;
 // and minimal exception handling
 // Some operations are incomplete and there are provisions
 // to change from map to a list/vector for adjacency list
+//Modified by Michael Morikawa to use a vector for adj list
 
 class AdjacencyListGraph : public Graph
 {
