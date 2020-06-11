@@ -1,0 +1,8 @@
+BOS    BOS
+DFW    DFW
+JFK    JFK
+LAX    LAX
+MIA    MIA
+ORD    ORD
+SEA    SEA
+SFO    SFO

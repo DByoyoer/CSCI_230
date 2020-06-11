@@ -1,0 +1,427 @@
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 0
+
+Vertex LAX
+[outgoing] 2 adjacencies:
+(SEA, UA1234, 199.99)
+(DFW, AA1000, 189)
+
+[incoming] 3 adjacencies:
+(SFO, UA2000, 79)
+(DFW, AA2000, 199)
+(MSY, SW6000, 190)
+
+Vertex SFO
+[outgoing] 1 adjacencies:
+(LAX, UA2000, 79)
+
+[incoming] 1 adjacencies:
+(DFW, DL4321, 99.99)
+
+Vertex DFW
+[outgoing] 2 adjacencies:
+(LAX, AA2000, 199)
+(SFO, DL4321, 99.99)
+
+[incoming] 3 adjacencies:
+(LAX, AA1000, 189)
+(ORD, UA9999, 50)
+(MSY, SW7654, 109)
+
+Vertex ORD
+[outgoing] 2 adjacencies:
+(DFW, UA9999, 50)
+(BOS, UA3000, 179)
+
+[incoming] 3 adjacencies:
+(BOS, UA4000, 149)
+(JFK, JB5432, 99)
+(SEA, UA5430, 179.5)
+
+Vertex BOS
+[outgoing] 2 adjacencies:
+(ORD, UA4000, 149)
+(JFK, JB2345, 99)
+
+[incoming] 1 adjacencies:
+(ORD, UA3000, 179)
+
+Vertex JFK
+[outgoing] 3 adjacencies:
+(ORD, JB5432, 99)
+(MIA, UA5000, 49)
+(MSY, DL3555, 220)
+
+[incoming] 1 adjacencies:
+(BOS, JB2345, 99)
+
+Vertex MIA
+[outgoing] 1 adjacencies:
+(MSY, DL6789, 50)
+
+[incoming] 1 adjacencies:
+(JFK, UA5000, 49)
+
+Vertex MSY
+[outgoing] 2 adjacencies:
+(LAX, SW6000, 190)
+(DFW, SW7654, 109)
+
+[incoming] 2 adjacencies:
+(JFK, DL3555, 220)
+(MIA, DL6789, 50)
+
+Vertex SEA
+[outgoing] 1 adjacencies:
+(ORD, UA5430, 179.5)
+
+[incoming] 1 adjacencies:
+(LAX, UA1234, 199.99)
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 1
+
+Please enter an airport code: SFO
+SFO:     San Francisco
+1 Departing Flights: 
+Flight ID: UA2000
+Flight Destination: LAX
+Flight Cost: $79.00
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 2
+Please enter source airport then destination airport codes: LAX JFK
+LAX --- UA1234 --> SEA --- UA5430 --> ORD --- UA3000 --> BOS --- JB2345 --> JFK
+Cost: $657.49
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 2
+Please enter source airport then destination airport codes: JFK LAX
+JFK --- UA5000 --> MIA --- DL6789 --> MSY --- SW6000 --> LAX
+Cost: $289.00
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 5
+Please enter source airport then destination airport codes: LAX SFO
+Flight from LAX to SFO does not exist.
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 4
+Please enter source airport then destination airport codes: DFW JFK
+
+Please Enter Flight number: UA8888
+Please enter the cost: 200.00
+Successfully added flight
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 4
+Please enter source airport then destination airport codes: JFK MSY
+
+Please Enter Flight number: UA7777
+Please enter the cost: 199.00
+Successfully added flight
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 3
+Please enter source airport then destination airport codes: LAX JFK
+LAX --- AA1000 --> DFW --- UA8888 --> JFK
+Return: JFK --- UA5000 --> MIA --- DL6789 --> MSY --- SW6000 --> LAX
+Cost: $678.00
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 0
+
+Vertex LAX
+[outgoing] 2 adjacencies:
+(SEA, UA1234, 199.99)
+(DFW, AA1000, 189.00)
+
+[incoming] 3 adjacencies:
+(SFO, UA2000, 79.00)
+(DFW, AA2000, 199.00)
+(MSY, SW6000, 190.00)
+
+Vertex SFO
+[outgoing] 1 adjacencies:
+(LAX, UA2000, 79.00)
+
+[incoming] 1 adjacencies:
+(DFW, DL4321, 99.99)
+
+Vertex DFW
+[outgoing] 3 adjacencies:
+(LAX, AA2000, 199.00)
+(SFO, DL4321, 99.99)
+(JFK, UA8888, 200.00)
+
+[incoming] 3 adjacencies:
+(LAX, AA1000, 189.00)
+(ORD, UA9999, 50.00)
+(MSY, SW7654, 109.00)
+
+Vertex ORD
+[outgoing] 2 adjacencies:
+(DFW, UA9999, 50.00)
+(BOS, UA3000, 179.00)
+
+[incoming] 3 adjacencies:
+(BOS, UA4000, 149.00)
+(JFK, JB5432, 99.00)
+(SEA, UA5430, 179.50)
+
+Vertex BOS
+[outgoing] 2 adjacencies:
+(ORD, UA4000, 149.00)
+(JFK, JB2345, 99.00)
+
+[incoming] 1 adjacencies:
+(ORD, UA3000, 179.00)
+
+Vertex JFK
+[outgoing] 4 adjacencies:
+(ORD, JB5432, 99.00)
+(MIA, UA5000, 49.00)
+(MSY, DL3555, 220.00)
+(MSY, UA7777, 199.00)
+
+[incoming] 2 adjacencies:
+(BOS, JB2345, 99.00)
+(DFW, UA8888, 200.00)
+
+Vertex MIA
+[outgoing] 1 adjacencies:
+(MSY, DL6789, 50.00)
+
+[incoming] 1 adjacencies:
+(JFK, UA5000, 49.00)
+
+Vertex MSY
+[outgoing] 2 adjacencies:
+(LAX, SW6000, 190.00)
+(DFW, SW7654, 109.00)
+
+[incoming] 3 adjacencies:
+(JFK, DL3555, 220.00)
+(MIA, DL6789, 50.00)
+(JFK, UA7777, 199.00)
+
+Vertex SEA
+[outgoing] 1 adjacencies:
+(ORD, UA5430, 179.50)
+
+[incoming] 1 adjacencies:
+(LAX, UA1234, 199.99)
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 6
+Please enter source airport then destination airport codes: JFK SFO
+JFK --- JB5432 --> ORD --- UA9999 --> DFW --- DL4321 --> SFO
+Cost: $248.99
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 9
+Please enter airport code that you wish to delete: MSY
+Successfully deleted airport
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: 0
+
+Vertex LAX
+[outgoing] 2 adjacencies:
+(SEA, UA1234, 199.99)
+(DFW, AA1000, 189.00)
+
+[incoming] 2 adjacencies:
+(SFO, UA2000, 79.00)
+(DFW, AA2000, 199.00)
+
+Vertex SFO
+[outgoing] 1 adjacencies:
+(LAX, UA2000, 79.00)
+
+[incoming] 1 adjacencies:
+(DFW, DL4321, 99.99)
+
+Vertex DFW
+[outgoing] 3 adjacencies:
+(LAX, AA2000, 199.00)
+(SFO, DL4321, 99.99)
+(JFK, UA8888, 200.00)
+
+[incoming] 2 adjacencies:
+(LAX, AA1000, 189.00)
+(ORD, UA9999, 50.00)
+
+Vertex ORD
+[outgoing] 2 adjacencies:
+(DFW, UA9999, 50.00)
+(BOS, UA3000, 179.00)
+
+[incoming] 3 adjacencies:
+(BOS, UA4000, 149.00)
+(JFK, JB5432, 99.00)
+(SEA, UA5430, 179.50)
+
+Vertex BOS
+[outgoing] 2 adjacencies:
+(ORD, UA4000, 149.00)
+(JFK, JB2345, 99.00)
+
+[incoming] 1 adjacencies:
+(ORD, UA3000, 179.00)
+
+Vertex JFK
+[outgoing] 2 adjacencies:
+(ORD, JB5432, 99.00)
+(MIA, UA5000, 49.00)
+
+[incoming] 2 adjacencies:
+(BOS, JB2345, 99.00)
+(DFW, UA8888, 200.00)
+
+Vertex MIA
+[outgoing] 0 adjacencies:
+
+[incoming] 1 adjacencies:
+(JFK, UA5000, 49.00)
+
+Vertex SEA
+[outgoing] 1 adjacencies:
+(ORD, UA5430, 179.50)
+
+[incoming] 1 adjacencies:
+(LAX, UA1234, 199.99)
+
+1. Display airport information
+2. Cheapest flight from one airport to another
+3. Cheapest roundrtip from one airport to another
+4. Add a flight
+5. Delete a flight
+6. Fewest stops
+7. All flights from one airport to another
+8. Order to visit all airports from one airport
+9. Delete airport
+Q. Exit
+
+Please Select from Above Options: Q

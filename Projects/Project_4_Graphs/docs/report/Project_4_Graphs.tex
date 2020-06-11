@@ -1,0 +1,70 @@
+\documentclass[titlepage]{article}
+\usepackage[draft=false, cachedir=minted_cache]{minted}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+\usepackage[margin=.5in]{geometry} %used to set the margins
+\setcounter{secnumdepth}{0} %used to get rid of section numbers
+\title{
+    Project 4 - Graphs\\
+    CSCI 230 T Th 11:10 am \\
+    Compiler: g++ \\
+    OS: Windows 10/WSL
+    }
+
+\author{Michael Morikawa}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Notes}
+\subsection{Status}
+Required options completed and working
+\subsection{Extra Credit}
+Completed extra credit by implement option 6 (Least amount of stops) and option 9(Remove Airport)
+\subsection{Design Decisions}
+For the delete flight one I assumed that it be only a flight from the source to destination airport. So for the test
+case there was no flight to delete since there was no direct flight from LAX to SFO. If I had to consider both directions,
+then what I could have done would be to check in one direction and if there are no edges try the other direction instead.
+Also, for the adding a flight, I interepreted the replacing as only being done if the flight id mathced so I allowed multiple
+edges between vertices.
+
+
+\newpage
+
+\section{Data}
+\subsection{Output}
+\lstinputlisting{../result.txt}
+\subsection{Graphs}
+\subsubsection{Original Graph}
+\includegraphics[scale=0.4]{ogGraph.png}
+\subsubsection{Test Case 3}
+\includegraphics[scale=0.4]{testCase2.png}
+\subsubsection{Test Case 4}
+\includegraphics[scale=0.4]{testCase3.png}
+\subsubsection{Test Case 6}
+\includegraphics[scale=0.4]{testCase5.png}
+\subsection{Test Case 7}
+\includegraphics[scale=0.4]{testCase6.png}
+\subsubsection{Test Case 8}
+\includegraphics[scale=0.4]{testCase7.png}
+\subsubsection{Test Case EC Option 6}
+\includegraphics[scale=0.4]{testCase8.png}
+\subsubsection{Final Graph and Test Case EC Option 9}
+\includegraphics[scale=0.4]{finalGraph.png}
+
+\newpage
+
+\section{Source Code}
+\subsection{main.cpp}
+\inputminted{c++}{../../src/main.cpp}
+\subsection{Graph.h}
+\inputminted{c++}{../../include/Graph.h}
+\subsection{AdjacencyListGraph.hpp}
+\inputminted{c++}{../../include/AdjacencyListGraph.hpp}
+
+
+\end{document}
