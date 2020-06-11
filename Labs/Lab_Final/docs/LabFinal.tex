@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage[cachedir=minted_cache]{minted}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+\usepackage[margin=1in]{geometry} %used to set the margins
+\setcounter{secnumdepth}{0} %used to get rid of section numbers
+\title{Lab Final}
+\author{Michael Morikawa}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+
+
+\section{Source Code}
+\subsection{SimpleAdjMatrixGraph.hpp}
+\inputminted{c++}{../include/SimpleAdjMatrixGraph.hpp}
+\subsection{main.cpp}
+\inputminted{c++}{../src/main.cpp}
+
+\section{Output}
+\includegraphics[]{output.png}
+
+\end{document}
